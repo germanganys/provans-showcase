@@ -1,0 +1,27 @@
+{% load static %}
+{% block service_viewer %}
+
+    <blockquote class="blockquote bq-title text-center">
+        <h3 class="mb-0 text-uppercase text-dark">Акции</h3>
+    </blockquote>
+
+    <div class="gallery-container">
+        <div class="gallery0">
+            {% for promo in promos %}
+                <div class="card fix-mobile-margin">
+                    <a href="{{ promo.get_absolute_url }}">
+                        <img data-src="{{ promo.image.url }}"
+                             alt="Promo"
+                             class="card-img-top tns-lazy-img"
+                             width="250"
+                             height="250"
+                        >
+                        <div class="card-body text-white p-2" style="background-color: rgba(0, 0, 0, 0.4)">
+                            {{ promo.name }}
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

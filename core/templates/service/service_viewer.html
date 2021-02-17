@@ -1,0 +1,53 @@
+{% load static %}
+{% block service_viewer %}
+
+    <blockquote class="blockquote bq-title text-center">
+        <h3 class="mb-0 text-uppercase text-dark">Парикмахерские услуги</h3>
+    </blockquote>
+
+    <div class="gallery-container">
+        <div class="gallery2">
+            {% for service in hair_services|dictsort:'sort_priority' %}
+                <div class="card fix-mobile-margin">
+                    <a href="{{ service.get_absolute_url }}">
+                        <img data-src="{{ service.image.url }}"
+                             alt="Service"
+                             class="card-img-top tns-lazy-img"
+                             width="250"
+                             height="250"
+                        >
+                    </a>
+                    <div class="card-body text-white p-2" style="background-color: rgba(0, 0, 0, 0.4)">
+                        {{ service.name }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+    <blockquote class="blockquote bq-title text-center">
+        <h3 class="mb-0 text-uppercase text-dark">Маникюр & Педикюр</h3>
+    </blockquote>
+
+    <div class="gallery-container">
+        <div class="gallery3">
+            {% for service in nail_services|dictsort:'sort_priority' %}
+                <div class="card fix-mobile-margin">
+                    <a href="{{ service.get_absolute_url }}">
+                        <img data-src="{{ service.image.url }}"
+                             alt="Service"
+                             class="card-img-top tns-lazy-img"
+                             width="250"
+                             height="250"
+                        >
+                        <div class="card-body text-white p-2"
+                             style="background-color: rgba(0, 0, 0, 0.4)">
+                            {{ service.name }}
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

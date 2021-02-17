@@ -1,0 +1,10 @@
+version: '2.2'
+
+services:
+  redis:
+    image: redis:5-alpine
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - "5672:5672"

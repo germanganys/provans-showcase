@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin*
+Disallow: /media*
+Crawl-delay: 5
+
+Sitemap: https://is-provans.ru/sitemap.xml

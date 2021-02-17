@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block content %}
+
+    <blockquote class="blockquote bq-title text-center">
+        <h3 class="mb-0 text-uppercase text-dark">Контакты</h3>
+    </blockquote>
+
+    <ul class="list-group justify-content-center">
+        <li class="text-center">
+             <a style="color: #000000" href="https://www.instagram.com/provanstlt/" role="button"
+            ><i class="fab fa-instagram fa-lg"></i
+            ></a>
+        </li>
+        <li>
+            <div class="text-center">
+                <a href="tel:+79397005454" class="text-dark font-weight-bold">+7 (939) 700-54-54</a>
+            </div>
+        </li>
+    </ul>
+    <ul class="list-group list-group-horizontal justify-content-center">
+        <li>
+            <div class="text-center text-dark font-weight-bold">
+                Режим работы: 9:00-20:00
+            </div>
+        </li>
+    </ul>
+    <ul class="list-group list-group-horizontal justify-content-center">
+        <li>
+            <div class="text-center text-dark font-weight-bold">
+                ул. Спортивная 8
+            </div>
+        </li>
+    </ul>
+
+    <br>
+    <img src="{% static 'imgs/img_map.png' %}" style="height: 300px; width: 100%;object-fit: cover">
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Запись{% endblock %}
+
+{% block functional_btn %}
+    <form class="form-inline my-md-0 w-75">
+        <a href="tel:+79397005454" class="btn btn-sm w-100 btn-outline-white mx-auto">
+            ПОЗВОНИТЬ
+        </a>
+    </form>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <br>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Записаться</li>
+            </ol>
+        </nav>
+        <blockquote class="blockquote bq-title text-center">
+            <h3 class="mb-0 text-uppercase">Запись</h3>
+            <footer class="font-weight-lighter mb-3">
+            </footer>
+        </blockquote>
+        <div class="container">
+            <form method="post" style="max-width: 30rem; margin-left: auto; margin-right: auto">
+                {% csrf_token %}
+                {{ booking_form|as_crispy_errors }}
+
+                {{ booking_form.name|as_crispy_field }}
+                <br>
+                {{ booking_form.phone_number|as_crispy_field }}
+                <br>
+                <button type="submit"
+                        class='btn btn-outline-black btn-block'>Записаться
+                </button>
+            </form>
+        </div>
+        <br>
+    </div>
+    <script src="{% static '/js/cleave.min.js' %}"></script>
+    <script src="{% static '/js/phone-type-formatter.ru.js' %}"></script>
+
+    <script>
+        var cleave = new Cleave('#{{ booking_form.phone_number.id_for_label }}', {
+            phone: true,
+            phoneRegionCode: 'RU',
+            prefix: '+7',
+            delimiter: '-'
+        });
+    </script>
+{% endblock %}

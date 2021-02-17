@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}PROVANS{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <br>
+        <div class="text-center">
+            <img class="text-center" src="{% static 'imgs/hand.svg' %}" style="height: 42px">
+        </div>
+        <div id="promo_block"></div>
+        {% include 'promo/promo_viewer.html' %}
+
+        <br>
+        <div id="services_block"></div>
+        {% include 'service/service_viewer.html' %}
+
+        <br>
+        <div id="about_block"></div>
+        {% include 'about/about_viewer.html' %}
+
+        <br>
+        <div id="portfolio_block"></div>
+        {% include 'portfolio.html' %}
+    </div>
+    <br>
+    <script>
+        for (var i = 0; 5 > i; i++) var slider = tns({
+            fixedWidth: 250,
+            container: ".gallery" + i,
+            controls: 0,
+            items: 1,
+            lazyload: !0,
+            lazyloadSelector: ".tns-lazy-img",
+            speed: 400,
+            mouseDrag: !0,
+            arrowKeys: 1,
+            center: !0,
+            nav: !1,
+            slideBy: 1,
+            preventScrollOnTouch: "auto",
+            responsive: {900: {items: 5, controls: 1}}
+        });
+    </script>
+{% endblock %}
+

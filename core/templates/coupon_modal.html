@@ -1,0 +1,74 @@
+<div
+        class="modal fade"
+        id="couponModal"
+        tabindex="-1"
+        aria-labelledby="couponModalLabel"
+        aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="couponModalLabel">Ваш купон на скидку 10%</h5>
+                <button
+                        type="button"
+                        class="btn-close"
+                        data-mdb-dismiss="modal"
+                        aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <label for="coupon-code" class="col-form-label">Предъявите его в нашем салоне:</label>
+                <input id="coupon-code" class="form-control" type="text" disabled
+                       style="text-align: center; font-size: 2rem;">
+                <p>
+                    *Купон действует 10 дней с момента получения на сайте<br>
+                    Скидки не суммируются и не распространяются на акционные услуги<br>
+                    Купон уникален
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="copier" class="btn btn-secondary" onclick="copyCoupon()">
+                    Скопировать
+                </button>
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getCoupon() {
+        if (localStorage.getItem('coupon-code') !== null) {
+            document.getElementById('coupon-code').value = localStorage.getItem('coupon-code');
+            axios({
+                    method: 'post',
+                    url: '{% url 'coupon-fetched-notify' %}',
+                    data: {code: document.getElementById('coupon-code').value},
+                    headers: {'X-CSRFToken': '{{ csrf_token }}'}
+                }
+            );
+        } else {
+            fetchCoupon()
+        }
+    }
+
+    function fetchCoupon() {
+        axios.get('{% url 'get-coupon' %}')
+            .then(function (response) {
+                localStorage.setItem('coupon-code', response.data.code)
+                document.getElementById('coupon-code').value = localStorage.getItem('coupon-code')
+            })
+            .catch(function (error) {
+                localStorage.setItem('coupon-code', 'PROVS')
+                document.getElementById('coupon-code').value = localStorage.getItem('coupon-code')
+            })
+    }
+
+    function copyCoupon() {
+        navigator.clipboard.writeText(document.getElementById('coupon-code').value).then(() => {
+            document.getElementById('copier').innerText = 'Скопировано!'
+        })
+    }
+</script>

@@ -1,0 +1,23 @@
+{% load static %}
+
+{% block portfolio %}
+    <blockquote class="blockquote bq-title text-center">
+        <h3 class="mb-0 text-uppercase text-dark">Портфолио</h3>
+    </blockquote>
+
+    <div class="gallery-container">
+        <div class="gallery4">
+            {% for photo in portfolio_photos %}
+                <div class="card fix-mobile-margin">
+                    <a href="">
+                        <img data-src="{{ photo.image.url }}"
+                             class="card-img-top tns-lazy-img"
+                             width="250"
+                             height="250"
+                             alt="Portfolio img">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

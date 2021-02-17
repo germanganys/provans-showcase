@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
+
+    <link rel="icon" href="{% static 'imgs/favicon.ico' %}" type="image/x-icon">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="yandex-verification" content="2da240881e94dcf0"/>
+    <meta name="Description"
+          content="Услуги от PROVANS - особый способ позаботиться о себе!
+ Тольятти, ул. Спортивная, 8. Пн-Вс: 9:00-20:00.">
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.1.0/mdb.min.css"
+            rel="stylesheet"
+    />
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+    <title>{% block title %}
+        PROVANS
+    {% endblock %}</title>
+</head>
+
+<body>
+<!-- Desktop navbar -->
+<div class="d-none d-md-block">
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+        <div class="navbar-text white-text font-weight-normal">{{ tel }}&nbsp</div>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarBig">
+            <ul class="navbar-nav d-lg-flex align-items-center">
+                <li class="nav-item h-100">
+                    <a class="navbar-brand" href="{% url 'main_page' %}">
+                        <img src="{% static 'imgs/logo_s.png' %}" style="max-height: 2rem"
+                             class="align-top">
+                    </a>
+                </li>
+                <li class="nav-item h-100">
+                    <a class="nav-link text-uppercase"
+                       href="{% if request.get_full_path != "/" %}/{% endif %}#about_block">О нас</a>
+                </li>
+                <li class="nav-item h-100">
+                    <a class="nav-link text-uppercase"
+                       href="{{ price.file.url }}">Цены</a>
+                </li>
+                <li class="nav-item h-100">
+                    <a class="nav-link text-uppercase"
+                       href="{% if request.get_full_path != "/" %}/{% endif %}#portfolio_block">Портфолио</a>
+                </li>
+                <li class="nav-item h-100">
+                    <a class="nav-link text-uppercase"
+                       href="{% if request.get_full_path != "/" %}/{% endif %}#promo_block">Акции</a>
+                </li>
+                <li class="nav-item h-100">
+                    <a class="nav-link text-uppercase"
+                       href="{% if request.get_full_path != "/" %}/{% endif %}#contacts_block">Контакты</a>
+                </li>
+                <li class="nav-item h-100">
+                    <a class="nav-link text-uppercase"
+                    >&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                </li>
+            </ul>
+            <a href="{% url 'booking_page' %}" class="btn btn-outline-white">ЗАПИСАТЬСЯ</a>
+        </div>
+    </nav>
+</div>
+
+<!-- Mobile navbar -->
+<div class="d-md-none">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+
+            {% block functional_btn %}
+                <form class="form-inline my-md-0 w-75">
+                    <a href="{% url 'booking_page' %}" class="btn btn-sm w-100 btn-outline-white mx-auto">
+                        ЗАПИСАТЬСЯ
+                    </a>
+                </form>
+            {% endblock %}
+            <input type="checkbox" id="lua-navbar-toggler" class="d-none"/>
+            <label for="lua-navbar-toggler" class="navbar-toggler" data-toggle="collapse"
+                   data-target="#navbarSmall" aria-controls="navbarSmall" aria-expanded="false"
+                   aria-label="Toggle navigation" style="margin-bottom: 0.05rem;">
+                <div class="animated-icon1"><span></span><span></span><span></span></div>
+            </label>
+
+            <div class="collapse navbar-collapse" id="navbarSmall">
+                <ul class="navbar-nav nav-fill w-100 mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-uppercase" href="{% url 'main_page' %}">Главная</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-uppercase"
+                           href="{% if request.get_full_path != "/" %}/{% endif %}#about_block">О нас</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-uppercase"
+                           href="{{ price.file.url }}">Цены</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-uppercase"
+                           href="{% if request.get_full_path != "/" %}/{% endif %}#promo_block">Акции</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-uppercase"
+                           href="{% if request.get_full_path != "/" %}/{% endif %}#portfolio_block">Портфолио</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-uppercase"
+                           href="{% if request.get_full_path != "/" %}/{% endif %}#contacts_block">Контакты</a>
+                    </li>
+                    <li class="nav-item active">&nbsp;</li>
+                    <li class="nav-item active">
+                        <img src="{% static 'imgs/logo_s.png' %}" style="max-height: 3rem">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Background image -->
+<div>
+    <div class="text-center">
+        <a href="{% url 'main_page' %}"><img src="{% static 'imgs/logo.png' %}" class="img-fluid"
+                                             style="max-width: 5rem;padding-top: 1rem;padding-bottom: 1rem;"></a>
+        <ul class="list-group list-group-horizontal justify-content-center">
+            <li>
+                <a class="fab fa-instagram" style="font-size: 1.5rem; color: black;"
+                   href="https://www.instagram.com/provanstlt/"></a>
+            </li>
+        </ul>
+        <div class="text-center">
+            <a href="tel:+79397005454" class="text-dark font-weight-bold">+7 (939) 700-54-54</a>
+        </div>
+        <div class="text-center" style="margin-bottom: 0.5rem">
+            Купон на скидку 10%
+        </div>
+        <a class="btn btn-outline-black btn-sm"
+           style="margin-bottom: 0.5rem"
+           data-mdb-toggle="modal"
+           data-mdb-target="#couponModal" onclick="getCoupon()">Получить Купон
+        </a>
+        <br>
+        <a class="btn btn-outline-black btn-sm" href="{{ price.file.url }}">Прайс Лист</a>
+    </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{% include 'coupon_modal.html' %}
+
+{% block content %}
+{% endblock %}
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.1.0/mdb.min.js"
+></script>
+
+<div id="contacts_block"></div>
+{% include 'contacts.html' %}
+
+<footer class="page-footer font-small bg-dark">
+    <div class="footer-copyright text-center py-3">© 2020 (Имидж Студия PROVANS)</div>
+</footer>
+{% include 'etc/metrics.html' %}
+
+</body>
+</html>

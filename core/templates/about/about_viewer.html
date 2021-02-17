@@ -1,0 +1,27 @@
+{% load static %}
+{% block service_viewer %}
+
+    <blockquote class="blockquote bq-title text-center">
+        <h3 class="mb-0 text-uppercase text-dark">О нас</h3>
+    </blockquote>
+
+    <div class="gallery-container">
+        <div class="gallery1">
+            {% for el in about %}
+                <div class="card fix-mobile-margin">
+                    <a href="{{ el.get_absolute_url }}">
+                        <img data-src="{{ el.image.url }}"
+                             alt="About"
+                             class="card-img-top tns-lazy-img"
+                             width="250"
+                             height="250"
+                        >
+                        <div class="card-body text-white p-2" style="background-color: rgba(0, 0, 0, 0.4)">
+                            {{ el.name }}
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
